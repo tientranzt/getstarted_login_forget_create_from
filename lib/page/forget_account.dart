@@ -9,6 +9,7 @@ class ForgetAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var rotate = MediaQuery.of(context).orientation;
+    const double kBottomNavigationBarHeight = 56.0;
     print(rotate);
     return Scaffold(
       appBar: AppBar(
@@ -23,58 +24,63 @@ class ForgetAccount extends StatelessWidget {
         elevation: 0,
       ),
       backgroundColor: Color(0xffffffff),
-      body: Container(
-        height: size.height,
-        width: size.width,
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              flex: 3,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    child: Image.asset("assets/images/key.png"),
-                  ),
-                  TitleGeneral(
-                    title: "Forgot Password",
-                  ),
-                  SubTitleGeneral(
-                    subTitle:
-                    "You just input a registrator email and we will send a link to reset password",
-                  ),
-                ],
+      body: SingleChildScrollView(
+        child: Container(
+          height: size.height -40,
+          width: size.width,
+          child: Column(
+            children: <Widget>[
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      child: Image.asset("assets/images/key.png"),
+                    ),
+                    TitleGeneral(
+                      title: "Forgot Password",
+                    ),
+                    SubTitleGeneral(
+                      subTitle:
+                      "You just input a registrator email and we will send a link to reset password",
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Column(
-                children: <Widget>[
-                  TextFieldGeneral(
-                    text: "Enter your Email",
-                  ),
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    TextFieldGeneral(
+                      text: "Enter your Email",
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      child: Column(children: <Widget>[OrangeButton(title: "SUBMIT",)],),
+                    ),
+                    Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Text("Dont' have and account"),
+                          Text(
+                            "SIGN UP",
+                            style: TextStyle(color: Color(0xffFF910E)),
+                          ),
+                          SizedBox(height: 40,)
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
 
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Column(children: <Widget>[OrangeButton(title: "SUBMIT",)],),
-            ),
-            Expanded(
-              flex: 1,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Text("Dont' have and account"),
-                  Text(
-                    "SIGN UP",
-                    style: TextStyle(color: Color(0xffFF910E)),
-                  ),
-                  SizedBox(height: 5,)
-                ],
-              ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );

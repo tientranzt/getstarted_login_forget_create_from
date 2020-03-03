@@ -4,6 +4,9 @@ import 'package:getstarted/page/forget_account.dart';
 import 'package:getstarted/page/get_started.dart';
 import 'package:getstarted/page/login1.dart';
 
+import 'page/forget_account.dart';
+import 'page/get_started.dart';
+
 
 void main() => runApp(MaterialApp(
   routes: {
