@@ -22,6 +22,6 @@ void main() => runApp(MaterialApp(
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetStarted();
+    return Login1();
   }
 }
