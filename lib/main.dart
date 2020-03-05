@@ -3,21 +3,30 @@ import 'package:getstarted/page/create_account.dart';
 import 'package:getstarted/page/forget_account.dart';
 import 'package:getstarted/page/get_started.dart';
 import 'package:getstarted/page/login1.dart';
-
 import 'page/forget_account.dart';
 import 'page/get_started.dart';
+import 'package:flutter/services.dart';
+
+void main() {
+//  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+//    statusBarColor: Colors.transparent,
+//    systemNavigationBarColor: Colors.transparent,
+//    systemNavigationBarDividerColor: Colors.transparent,
+//  ));
 
 
-void main() => runApp(MaterialApp(
-  routes: {
-    "start": (context)=> GetStarted(),
-    "login1": (context)=> Login1(),
-    "create_acc": (context)=> CreateAccount(),
-    "forget_acc": (context)=> ForgetAccount(),
-  },
-  debugShowCheckedModeBanner: false,
-  home: MyApp(),
-));
+  runApp(MaterialApp(
+    routes: {
+      "start": (context) => GetStarted(),
+      "login1": (context) => Login1(),
+      "create_acc": (context) => CreateAccount(),
+      "forget_acc": (context) => ForgetAccount(),
+    },
+    debugShowCheckedModeBanner: false,
+    home: MyApp(),
+  ));
+
+}
 
 class MyApp extends StatelessWidget {
   @override

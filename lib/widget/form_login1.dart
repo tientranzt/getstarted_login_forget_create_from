@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getstarted/model/Auth.dart';
 
 class FormLogin1 extends StatefulWidget {
   @override
@@ -15,6 +16,15 @@ class _FormLogin1State extends State<FormLogin1> {
     return regExp.hasMatch(mail);
   }
 
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -29,11 +39,12 @@ class _FormLogin1State extends State<FormLogin1> {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             TextFormField(
+              controller: _emailController,
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter some text';
                 }
-                if(!checkIsEmail(value)){
+                if (!checkIsEmail(value)) {
                   return "This is not email";
                 }
                 return null;
@@ -52,15 +63,16 @@ class _FormLogin1State extends State<FormLogin1> {
             Stack(
               children: <Widget>[
                 TextFormField(
+                  controller: _passController,
                   validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  if (value.length < 8) {
-                    return 'Password must be greater than 8';
-                  }
-                  return null;
-                },
+                    if (value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    if (value.length < 6) {
+                      return 'Password must be greater than 8';
+                    }
+                    return null;
+                  },
                   obscureText: true,
                   decoration: InputDecoration(
                       hintText: "Enter your password",
@@ -95,9 +107,17 @@ class _FormLogin1State extends State<FormLogin1> {
               padding: EdgeInsets.all(0),
               color: Colors.white,
               elevation: 0,
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState.validate()) {
-                  print("ok");
+                  var user = _emailController.text.trim();
+                  var pass = _passController.text.trim();
+                  var result = await Auth.getToken(user, pass);
+                  if (result) {
+                    var userInfo = await Auth.checkLogin();
+                    if (userInfo != null){
+//                      print(userInfo);
+                    }
+                  }
                 }
               },
               child: Ink(
